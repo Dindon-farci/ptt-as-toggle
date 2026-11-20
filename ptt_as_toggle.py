@@ -18,12 +18,12 @@ def stop_script(e):
 def toggle_ptt(e):
     global ptt_on
     ptt_on = not ptt_on
-    if ptt_on:
-        keyboard.press(ptt_key)
-    else:
+    if not ptt_on:
         keyboard.release(ptt_key)
 
 keyboard.on_press_key(exit_key,stop_script)
-keyboard.on_press_key(ptt_key,toggle_ptt, suppress=True)
+keyboard.on_press_key(ptt_key,toggle_ptt,suppress=True)
 while not stop:
-    sleep(1)
+    sleep(0.1)
+    if ptt_on:
+        keyboard.press(ptt_key)
